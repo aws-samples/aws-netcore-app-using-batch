@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{34DE6223-43B3-4881-BE41-9D3BF53CCB33}|Default">
+  <MonoDevelop.Ide.ItemProperties.AppProcessingUsingBatch PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MyApp/SrcStack.cs">
+    <Files>
+      <File FileName="MyApp/SrcStack.cs" Line="86" Column="70" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AppProcessingUsingBatch" expanded="True">
+            <Node name="AppProcessingUsingBatch" expanded="True">
+              <Node name="SourceCode" expanded="True" />
+              <Node name="SrcStack.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
