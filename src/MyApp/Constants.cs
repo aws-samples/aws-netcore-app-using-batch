@@ -26,7 +26,7 @@ namespace MyApp
 
         
         public static string EC2_INSTANCE_ROLE_SERVICE = "ec2.amazonaws.com";
-        public static string ECS_INSTANCE_ROLE_SERVICE = "ec2.amazonaws.com";
+        public static string ECS_INSTANCE_ROLE_SERVICE = "ecs.amazonaws.com";
         public static string ECS_INSTANCE_ROLE_NAME = STACK_PREFIX+ "-ecs-instance-role";
         public static string ECS_INSTANCE_ROLE_ID = STACK_PREFIX+ "-ecs-instance-role-id";
 
@@ -57,7 +57,7 @@ namespace MyApp
         public static int BATCH_JOB_DEFINITION_VCPU = 2;
         public static double BATCH_JOB_DEFINITION_MemoryLimitMiB = 2000;
         public static string CONTAINER = "CONTAINER";
-        public static string BATCH_PROCESSOR_PYTHON_CODE_PATH = "../code/src/BatchProcessor";
+        public static string BATCH_PROCESSOR_PYTHON_CODE_PATH = "./src/BatchProcessor";
     
         public static string ECR_REPOSITORY_NAME = APP_NAME + "-repository";
         public static string ECR_REPOSITORY_ID = APP_NAME + "-repository-id";

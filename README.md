@@ -50,6 +50,12 @@ Refer to corresponding downloaded path on the provided below
 
 3. Python Batch processor code and Dockerfile for the AWS Batch to execute - aws-netcore-app-using-batch/code/src/BatchProcessor
 
+### Prerequisities
+
+1. DotnetCore - Make sure to install Dotnet Core.
+2. AWS CDK
+3. Docker - Make sure to Docker installed and running on your machine. CDK builds the docker assets and pushes the image to your repository as part of bootstrap and deploy operations.
+
 ### Steps
 
 1. Download this repository - 
@@ -64,7 +70,7 @@ Refer to corresponding downloaded path on the provided below
 $ cd aws-netcore-app-using-batch
 $ dotnet build src
 $ cdk bootstrap
-$ cdk deploy –-require-approval never
+$ cdk deploy --require-approval never
 
 ```
 
@@ -94,10 +100,11 @@ Make sure to complete the above step. You can review the image in AWS Console > 
 
 # CLI Commands to delete the S3, Dynamo and ECR repository 
     ```
+    $ cdk destroy
     $ aws s3 rb s3://netcore-batch-processing-job-<your-account-number> --force
     $ aws ecr delete-repository --repository-name netcore-cdk-batch-app-repository --force
     $ aws dynamodb delete-table --table-name netcore-cdk-batch-app-table
-
+    
     ```
 ## License
 

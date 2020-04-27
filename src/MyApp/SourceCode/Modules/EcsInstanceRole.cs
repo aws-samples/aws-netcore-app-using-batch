@@ -22,18 +22,14 @@ namespace MyApp.Modules
                     Constants.EC2_INSTANCE_ROLE_SERVICE,
                     Constants.ECS_INSTANCE_ROLE_SERVICE
                 }, 
-                Constants.ECS_INSTANCE_ROLE_NAME, 
-                new string[]{
-                    "sts:AssumeRole"
-                }, 
-                "*"
+                Constants.ECS_INSTANCE_ROLE_NAME
             );
         }
 
         public Role GetRole(Construct scope, string roleId, 
                 string[] ManagedPolicyArns, 
                 string[] PrincipalServices,
-                string PolicyName, string[] Actions, string resources){
+                string PolicyName){
 
 
             var roleProps =  new RoleProps{
@@ -59,14 +55,7 @@ namespace MyApp.Modules
             foreach(string arn in ManagedPolicyArns){
                 iamRole.AddManagedPolicy(ManagedPolicy.FromAwsManagedPolicyName(arn));
             }
-            
-            PolicyStatement policyStatement = new PolicyStatement(new PolicyStatementProps{
-               Actions = Actions,
-               Resources = new string[]{resources},
-               Effect = Effect.ALLOW
-            });
-
-            iamRole.AddToPolicy(policyStatement);           
+                 
             return iamRole;
         }
     }

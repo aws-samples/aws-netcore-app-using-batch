@@ -44,7 +44,7 @@ namespace MyApp
 
             #endregion
 
-            #region S3, DynamoDB, SNS, Lambda (to trigger the batch on file drop)
+            #region S3, DynamoDB, Lambda (to trigger the batch on file drop)
             s3.Bucket bucket = new s3.Bucket(this, Constants.S3_BUCKET_ID, new s3.BucketProps{
                 BucketName = Constants.S3_BUCKET_NAME + this.Account
             });
@@ -73,21 +73,21 @@ namespace MyApp
             });
 
             #region Batch - ComputeEnvironment - Job Queue - Job Definition            
-            var batchServiceRoleProvider =  new BatchServiceRole(this, Constants.BATCH_SERVICE_ROLE_ID);
-            var ecsInstanceRoleProvider =  new EcsInstanceRole(this, Constants.ECS_INSTANCE_ROLE_ID);
-            var batchInstanceProfile =  new InstanceProfile(this, Constants.BATCH_INSTANCE_PROFILE_ID, ecsInstanceRoleProvider);
+            var batchServiceRole =  new BatchServiceRole(this, Constants.BATCH_SERVICE_ROLE_ID);
+            var ecsInstanceRole =  new EcsInstanceRole(this, Constants.ECS_INSTANCE_ROLE_ID);
+            var batchInstanceProfile =  new InstanceProfile(this, Constants.BATCH_INSTANCE_PROFILE_ID, ecsInstanceRole);
 
             var computeEnvironment = new batch.CfnComputeEnvironment(this, Constants.BATCH_COMPUTE_ENVIRONMENT_ID, 
                 new batch.CfnComputeEnvironmentProps{
                     ComputeEnvironmentName = Constants.BATCH_COMPUTE_ENVIRONMENT_NAME,
                     Type = Constants.BATCH_COMPUTE_TYPE,
-                    ServiceRole = batchServiceRoleProvider.Role.RoleName,
+                    ServiceRole = batchServiceRole.Role.RoleName,
                     ComputeResources = new batch.CfnComputeEnvironment.ComputeResourcesProperty{
                         Type = Constants.BATCH_COMPUTE_RESOURCE_TYPE,
                         MinvCpus = 0,
                         MaxvCpus = 32,
                         DesiredvCpus = 0,
-                        InstanceRole = ecsInstanceRoleProvider.Role.RoleName,
+                        InstanceRole = ecsInstanceRole.Role.RoleName,
                         InstanceTypes = new string[]{
                             Constants.BATCH_INSTANCE_TYPE
                         },
@@ -157,7 +157,7 @@ namespace MyApp
             #region OUTPUTS
              var cfnComputeOutput = new CfnOutput(this, Constants.BATCH_COMPUTE_ENVIRONMENT_NAME_OUTPUT_ID,
                 new CfnOutputProps{
-                    Value = computeEnvironment.LogicalId
+                    Value = computeEnvironment.Ref
                 }
             );
 
